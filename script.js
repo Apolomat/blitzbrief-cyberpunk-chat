@@ -1,6 +1,7 @@
 const contacts = document.querySelectorAll(".conversation");
 const messageInp = document.querySelector("#sender-message-input");
 const messageHistory = document.querySelector(".messages");
+const fullframe = document.querySelector(".fullframe");
 
 contacts.forEach((contact) => {
     contact.addEventListener("click", (e) => {
@@ -57,6 +58,16 @@ messageInp.addEventListener("keydown", (e) => {
         
         messageInp.value = '';
         messageHistory.appendChild(newMsg);
+    }
+    
+});
+
+document.addEventListener("keydown", (e) => {
+
+    if(e.altKey && e.code === 'KeyP') {
+        e.preventDefault();
+        
+        fullframe.classList.toggle("fullframe-scroll");
     }
     
 });

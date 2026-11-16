@@ -293,9 +293,18 @@ button {
     content: "";
 }
 
+.fullframe-scroll {
+    overflow-y: scroll !important;
+}
+
 .header-actions {
     display: flex;
     gap: 5px;
+}
+
+.innerPopup {
+    display: flex;
+    flex-direction: column;
 }
 
 .messages {
@@ -368,6 +377,7 @@ button {
     margin-top: 30px;
     border: 1px solid var(--cyberpunk-darkcyan);
     border-radius: 4px;
+    corner-shape: bevel;
     color: var(--cyberpunk-darkcyan);
     background: var(--cyberpunk-bg-cyan);
     font-size: 14px;
@@ -425,7 +435,20 @@ button {
     margin-top: 3px;
     color: var(--cyberpunk-darkcyan);
     font-size: 10px;
-}         
+    text-decoration: none;
+}
+.profile-status:hover {
+    cursor: pointer;
+}
+
+.popup {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    place-content: center;
+}
 
 .search {
     position: relative;
@@ -453,6 +476,7 @@ button {
     padding: 0 12px 0 40px;
     border: 1px solid var(--cyberpunk-darkcyan);
     border-radius: 4px;
+    corner-shape: bevel;
     outline: none;
     background: var(--cyberpunk-bg-cyan);
     font-size: 12px;
@@ -570,6 +594,7 @@ button {
 .tool-button:focus-visible,
 .new-chat:focus,
 .new-chat:focus-visible {
+    transition: 0.5s ease-in-out;
     border: none;
     outline: 2px solid var(--cyberpunk-accent-cyan);
     outline-offset: -1px;

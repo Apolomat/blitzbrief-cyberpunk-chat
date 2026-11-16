@@ -129,7 +129,7 @@
                 <div class="avatar">Y/N</div>
                 <div class="profile-text">
                     <div class="profile-name">Your Name</div>
-                    <div class="profile-status">My Profile</div>
+                    <a class="profile-status" href="">My Profile</a>
                 </div>
                 <button class="tool-button" type="button" aria-label="Profile Settings">
                     <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -281,6 +281,17 @@
                 </div>
             </div>
         </main>
+        <div class="popup" id="prf-sttgs-popup">
+            <div class="innerPopup">
+                <input type="text" name="sttgs-username" id="sttgs-username">
+                <input type="number" name="sttgs-fontsize" id="sttgs-fontsize">
+                <select name="sttgs-color-theme" id="sttgs-color-theme">
+                    <option value="theme-default" id="opt-theme-default">Default (2078)</option>
+                    <option value="theme-2077" id="opt-theme-2077">2077 (Red)</option>
+                    <option value="theme-light" id="opt-theme-light">New Dawn</option>
+                </select>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
