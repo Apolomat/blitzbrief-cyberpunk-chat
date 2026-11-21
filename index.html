@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#f7f8fa">
-    <title></title>
+    <title>BlitzBrief</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/gjMBWtHF/usb-blitzbrief-logo-yellowbg.png">
 </head>
 <body>
     <div class="fullframe">
@@ -131,7 +132,7 @@
                     <div class="profile-name">Your Name</div>
                     <a class="profile-status" href="">My Profile</a>
                 </div>
-                <button class="tool-button" type="button" aria-label="Profile Settings">
+                <button class="tool-button" type="button" aria-label="Profile Settings" id="prf-sttgs-btn">
                     <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path fill="#55ead4" d="M12 21a8.985 8.985 0 0 1-1.755-.173 1 1 0 0 1-.791-.813l-.273-1.606a6.933 6.933 0 0 1-1.32-.762l-1.527.566a1 1 0 0 1-1.1-.278 8.977 8.977 0 0 1-1.756-3.041 1 1 0 0 1 .31-1.092l1.254-1.04a6.979 6.979 0 0 1 0-1.524L3.787 10.2a1 1 0 0 1-.31-1.092 8.977 8.977 0 0 1 1.756-3.042 1 1 0 0 1 1.1-.278l1.527.566a6.933 6.933 0 0 1 1.32-.762l.274-1.606a1 1 0 0 1 .791-.813 8.957 8.957 0 0 1 3.51 0 1 1 0 0 1 .791.813l.273 1.606a6.933 6.933 0 0 1 1.32.762l1.527-.566a1 1 0 0 1 1.1.278 8.977 8.977 0 0 1 1.756 3.041 1 1 0 0 1-.31 1.092l-1.254 1.04a6.979 6.979 0 0 1 0 1.524l1.254 1.04a1 1 0 0 1 .31 1.092 8.977 8.977 0 0 1-1.756 3.041 1 1 0 0 1-1.1.278l-1.527-.566a6.933 6.933 0 0 1-1.32.762l-.273 1.606a1 1 0 0 1-.791.813A8.985 8.985 0 0 1 12 21zm-.7-2.035a6.913 6.913 0 0 0 1.393 0l.247-1.451a1 1 0 0 1 .664-.779 4.974 4.974 0 0 0 1.696-.975 1 1 0 0 1 1.008-.186l1.381.512a7.012 7.012 0 0 0 .7-1.206l-1.133-.939a1 1 0 0 1-.343-.964 5.018 5.018 0 0 0 0-1.953 1 1 0 0 1 .343-.964l1.124-.94a7.012 7.012 0 0 0-.7-1.206l-1.38.512a1 1 0 0 1-1-.186 4.974 4.974 0 0 0-1.688-.976 1 1 0 0 1-.664-.779l-.248-1.45a6.913 6.913 0 0 0-1.393 0l-.25 1.45a1 1 0 0 1-.664.779A4.974 4.974 0 0 0 8.7 8.24a1 1 0 0 1-1 .186l-1.385-.512a7.012 7.012 0 0 0-.7 1.206l1.133.939a1 1 0 0 1 .343.964 5.018 5.018 0 0 0 0 1.953 1 1 0 0 1-.343.964l-1.128.94a7.012 7.012 0 0 0 .7 1.206l1.38-.512a1 1 0 0 1 1 .186 4.974 4.974 0 0 0 1.688.976 1 1 0 0 1 .664.779zm.7-3.725a3.24 3.24 0 0 1 0-6.48 3.24 3.24 0 0 1 0 6.48zm0-4.48A1.24 1.24 0 1 0 13.24 12 1.244 1.244 0 0 0 12 10.76z"/>
                     </svg>
@@ -271,7 +272,7 @@
                                 <path d="m8.5 12.5 6.8-6.8a3.2 3.2 0 0 1 4.5 4.5l-8.9 8.9a5 5 0 0 1-7.1-7.1l8.5-8.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button>
-                        <button class="send-button tool-button" type="button" aria-label="Send Message">
+                        <button class="send-button tool-button" type="button" aria-label="Send Message" id="main-sendBtn">
                             <svg class="send-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <path d="m21 3-7.2 18-3.6-7.2L3 10.2 21 3Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="m10.2 13.8 4.5-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
@@ -281,18 +282,33 @@
                 </div>
             </div>
         </main>
+
         <div class="popup" id="prf-sttgs-popup">
+
             <div class="innerPopup">
-                <input type="text" name="sttgs-username" id="sttgs-username" spellcheck="false">
+                <div id="prf-sttgs-popup-header">
+                    <h2 id="prf-sttgs-popup-title">Profile Settings</h2>
+                    <button id="prf-sttgs-popup-close">X</button>
+                </div>
+                
+                <label for="sttgs-username">Change your Username:</label>
+                <input type="text" name="sttgs-username" id="sttgs-username" spellcheck="false" style="margin-bottom: 15px;">
+
+                <label for="sttgs-fontsize">Change the Font Size:</label>
                 <input type="number" name="sttgs-fontsize" id="sttgs-fontsize">
+
+                <label for="sttgs-color-theme">Change the current Color Theme:</label>
                 <select name="sttgs-color-theme" id="sttgs-color-theme">
-                    <option value="theme-default" id="opt-theme-default">Default (2078)</option>
-                    <option value="theme-2077" id="opt-theme-2077">2077 (Red)</option>
-                    <option value="theme-light" id="opt-theme-light">New Dawn</option>
+                    <option value="theme-default" id="opt-theme-default" class="select-color-opt">Default (2078)</option>
+                    <option value="theme-2077" id="opt-theme-2077" class="select-color-opt">2077 (Red)</option>
+                    <option value="theme-light" id="opt-theme-light" class="select-color-opt">New Dawn</option>
                 </select>
+
             </div>
+
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
