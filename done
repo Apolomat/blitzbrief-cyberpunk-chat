@@ -1,0 +1,70 @@
+[1mdiff --git a/script.js b/script.js[m
+[1mindex fc4f313..3544190 100644[m
+[1m--- a/script.js[m
+[1m+++ b/script.js[m
+[36m@@ -46,6 +46,39 @@[m [mfunction sendMessage() {[m
+ [m
+ }[m
+ [m
+[32m+[m[32mfunction displayOnClick(clickElement, targetElement, displayType) {[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m    // Minha função está checando todos os erros possíveis antes de executar o código de verdade,[m[41m [m
+[32m+[m[32m    // isso previne qualquer comportamento não desejado. :)[m[41m[m
+[32m+[m[32m    if (!(clickElement instanceof HTMLElement)) {[m[41m[m
+[32m+[m[32m        console.log("Example of usage: displayOnClick(Element to be clicked, element to be affected, display type);");[m[41m[m
+[32m+[m[32m        throw new TypeError('Expected an HTML element for "clickElement"');[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[41m    [m
+[32m+[m[32m    if (!(targetElement instanceof HTMLElement)) {[m[41m[m
+[32m+[m[32m        console.log("Example of usage: displayOnClick(Element to be clicked, element to be affected, display type);");[m[41m[m
+[32m+[m[32m        throw new TypeError('Expected an HTML element for "targetElement"');[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[41m    [m
+[32m+[m[32m    if (typeof displayType !== 'string') {[m[41m[m
+[32m+[m[32m        console.log("Example of usage: displayOnClick(Element to be clicked, element to be affected, display type);");[m[41m[m
+[32m+[m[32m        throw new TypeError('Expected a string for "displayType"');[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m    // Isso define os tipos de display permitidos, assim ao usar a função, não permite colocar algo inválido no meio,[m[41m[m
+[32m+[m[32m    // tipo displayOnClick(Aelement, Belement, banana);[m[41m[m
+[32m+[m[32m    const validDisplays = ["flex", "none", "grid", "block", "inline", "inline-block", "inline-flex", "inline-grid", "inline-table", "table", "contents"];[m[41m[m
+[32m+[m[41m    [m
+[32m+[m[32m    if (!validDisplays.includes(displayType)) {[m[41m[m
+[32m+[m[32m        throw new TypeError('Invalid display type. Try "flex", "none", "grid", "block", "inline" or other.');[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m    clickElement.addEventListener("click", () => {[m[41m[m
+[32m+[m[32m        targetElement.style.display = displayType;[m[41m[m
+[32m+[m[32m    });[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m}[m[41m[m
+[32m+[m[41m[m
+ // Funcionalidade visual, ao clicar nos contatos, deixa o selecionado com o estilo "active" e os outros sem nada. Ao clicar com o botão direito em um contato, o contato é definido como "não lido".[m
+ contacts.forEach((contact) => {[m
+     contact.addEventListener("click", (e) => {[m
+[36m@@ -74,7 +107,7 @@[m [mcontacts.forEach((contact) => {[m
+         `;[m
+         const unreadSign = contact.querySelector(".unread-sign");[m
+         const conversationBottom = conversationClicked.querySelector(".conversation-bottom");[m
+[31m-[m
+[32m+[m[41m        [m
+         if(!unreadSign) {[m
+             conversationBottom.innerHTML += unreadSignSpan;[m
+         }[m
+[36m@@ -108,14 +141,10 @@[m [mdocument.addEventListener("keydown", (e) => {[m
+ });[m
+ [m
+ // Ao clicar no botão de configurações do perfil, deixa o popup visível.[m
+[31m-prfSettingsBtn.addEventListener("click", () => {[m
+[31m-    prfSettingsPopup.style.display = "flex";[m
+[31m-});[m
+[32m+[m[32mdisplayOnClick(prfSettingsBtn, prfSettingsPopup, "flex");[m[41m[m
+ [m
+ // Ao clicar no botão de fechar, deixa o popup invisível.[m
+[31m-prfSttgsBtnClose.addEventListener("click", () => {[m
+[31m-    prfSettingsPopup.style.display = "none";[m
+[31m-});[m
+[32m+[m[32mdisplayOnClick(prfSttgsBtnClose, prfSettingsPopup, "none");[m[41m[m
+ [m
+ /*****************************************************************************************************[m
+  * [Prioridade é definida pela ordem e por números depois do TO DO] [m

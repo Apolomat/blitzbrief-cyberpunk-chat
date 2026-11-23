@@ -46,6 +46,39 @@ function sendMessage() {
 
 }
 
+function displayOnClick(clickElement, targetElement, displayType) {
+
+    // Minha função está checando todos os erros possíveis antes de executar o código de verdade, 
+    // isso previne qualquer comportamento não desejado. :)
+    if (!(clickElement instanceof HTMLElement)) {
+        console.log("Example of usage: displayOnClick(Element to be clicked, element to be affected, display type);");
+        throw new TypeError('Expected an HTML element for "clickElement"');
+    }
+    
+    if (!(targetElement instanceof HTMLElement)) {
+        console.log("Example of usage: displayOnClick(Element to be clicked, element to be affected, display type);");
+        throw new TypeError('Expected an HTML element for "targetElement"');
+    }
+    
+    if (typeof displayType !== 'string') {
+        console.log("Example of usage: displayOnClick(Element to be clicked, element to be affected, display type);");
+        throw new TypeError('Expected a string for "displayType"');
+    }
+
+    // Isso define os tipos de display permitidos, assim ao usar a função, não permite colocar algo inválido no meio,
+    // tipo displayOnClick(Aelement, Belement, banana);
+    const validDisplays = ["flex", "none", "grid", "block", "inline", "inline-block", "inline-flex", "inline-grid", "inline-table", "table", "contents"];
+    
+    if (!validDisplays.includes(displayType)) {
+        throw new TypeError('Invalid display type. Try "flex", "none", "grid", "block", "inline" or other.');
+    }
+
+    clickElement.addEventListener("click", () => {
+        targetElement.style.display = displayType;
+    });
+
+}
+
 // Funcionalidade visual, ao clicar nos contatos, deixa o selecionado com o estilo "active" e os outros sem nada. Ao clicar com o botão direito em um contato, o contato é definido como "não lido".
 contacts.forEach((contact) => {
     contact.addEventListener("click", (e) => {
@@ -74,7 +107,7 @@ contacts.forEach((contact) => {
         `;
         const unreadSign = contact.querySelector(".unread-sign");
         const conversationBottom = conversationClicked.querySelector(".conversation-bottom");
-
+        
         if(!unreadSign) {
             conversationBottom.innerHTML += unreadSignSpan;
         }
@@ -108,14 +141,10 @@ document.addEventListener("keydown", (e) => {
 });
 
 // Ao clicar no botão de configurações do perfil, deixa o popup visível.
-prfSettingsBtn.addEventListener("click", () => {
-    prfSettingsPopup.style.display = "flex";
-});
+displayOnClick(prfSettingsBtn, prfSettingsPopup, "flex");
 
 // Ao clicar no botão de fechar, deixa o popup invisível.
-prfSttgsBtnClose.addEventListener("click", () => {
-    prfSettingsPopup.style.display = "none";
-});
+displayOnClick(prfSttgsBtnClose, prfSettingsPopup, "none");
 
 /*****************************************************************************************************
  * [Prioridade é definida pela ordem e por números depois do TO DO] 
